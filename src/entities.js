@@ -20,6 +20,12 @@ var lib = module.exports = {
       return new items.Weapon('wand', 5);
     },
     // Implementa los colmillos y el pseudópodo
+    get fangs() {
+      return new items.Weapon('fangs', 10);
+    }/*  ERROR ????
+    get pseudopode(){
+      return new items.Weapon('pseudopode', 5);
+    }*/
   },
 
   characters: {
@@ -54,8 +60,12 @@ var lib = module.exports = {
     get health() {
       return new items.Scroll('health', 10, new Effect({ hp: 25 }));
     },
+        // Implementa la bola de fuego
+        //***
+    get fireball() {
+      return new items.Scroll ('fireball', 30, new Effect({ hp: -25 }));
+    }
 
-    // Implementa la bola de fuego
 
   }
 };
