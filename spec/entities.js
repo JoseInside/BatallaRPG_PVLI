@@ -91,35 +91,35 @@ describe('Entities library', function () {
       expect(character).toEqual(jasmine.objectContaining(features));
     });
 
-    xit('allows to change party at any time.', function () {
+    it('allows to change party at any time.', function () {
       character.party = 'heroes';
       expect(character.party).toBe('heroes');
       character.party = 'monsters';
       expect(character.party).toBe('monsters');
     });
 
-    xit('sets maxHp to initial hp if not provided.', function () {
+    it('sets maxHp to initial hp if not provided.', function () {
       var partialFeatures = Object.create(features);
       partialFeatures.maxHp = void 0;
       character = new Character('Partial', partialFeatures);
       expect(character.maxHp).toBe(partialFeatures.hp);
     });
 
-    xit('sets maxMp to initial mp if not provided.', function () {
+    it('sets maxMp to initial mp if not provided.', function () {
       var partialFeatures = Object.create(features);
       partialFeatures.maxMp = void 0;
       character = new Character('Partial', partialFeatures);
       expect(character.maxMp).toBe(partialFeatures.mp);
     });
 
-    xit('allows to check if they are dead.', function () {
+    it('allows to check if they are dead.', function () {
       character.hp = 1;
       expect(character.isDead()).toBe(false);
       character.hp = 0;
       expect(character.isDead()).toBe(true);
     });
 
-    xdescribe('Effect application', function () {
+    describe('Effect application', function () {
 
       var variations;
       var effect;
@@ -136,7 +136,7 @@ describe('Entities library', function () {
         effect = new Effect(variations);
       });
 
-      xit('applies an effect if the effect comes from an ally.',
+      it('applies an effect if the effect comes from an ally.',
       function () {
         var isAlly = true;
 
@@ -147,7 +147,7 @@ describe('Entities library', function () {
         });
       });
 
-      xit('applies an effect if the effect comes from a foe and ' +
+     it('applies an effect if the effect comes from a foe and ' +
       'defense roll fails.',
       function () {
         var isAlly = false;
@@ -160,7 +160,7 @@ describe('Entities library', function () {
         });
       });
 
-      xit('does not applie an effect if the effect comes from a foe but ' +
+      it('does not applie an effect if the effect comes from a foe but ' +
       'defense roll passed.',
       function () {
         var isAlly = false;
@@ -174,7 +174,7 @@ describe('Entities library', function () {
 
     });
 
-    xit('prevents effects from changing name or weapon.', function () {
+    it('prevents effects from changing name or weapon.', function () {
       var variations = {
         name: 'Avoided',
         weapon: null
@@ -187,21 +187,21 @@ describe('Entities library', function () {
       expect(character.weapon).toBe(originalWeapon);
     });
 
-    xit('keeps mp in the range [0, maxMp].', function () {
+    it('keeps mp in the range [0, maxMp].', function () {
       character.mp = -10;
       expect(character.mp).toBe(0);
       character.mp = character.maxMp + 10;
       expect(character.mp).toBe(character.maxMp);
     });
 
-    xit('keeps hp in the range [0, maxHp].', function () {
+    it('keeps hp in the range [0, maxHp].', function () {
       character.hp = -10;
       expect(character.hp).toBe(0);
       character.hp = character.maxMp + 10;
       expect(character.hp).toBe(character.maxHp);
     });
 
-    xit('keeps defense in the range [0, 100]', function () {
+    it('keeps defense in the range [0, 100]', function () {
       character.defense = -10;
       expect(character.defense).toBe(0);
       character.defense = 200;
@@ -210,9 +210,9 @@ describe('Entities library', function () {
 
   });
 
-  xdescribe('Item type', function () {
+  describe('Item type', function () {
 
-    xit('allows to create generic items', function () {
+    it('allows to create generic items', function () {
       var item = new Item('testItem', new Effect({ hp: 5 }));
       expect(item.effect).toEqual(jasmine.any(Effect));
       expect(item.effect.hp).toBe(5);
@@ -220,7 +220,7 @@ describe('Entities library', function () {
 
   });
 
-  xdescribe('Weapon type', function () {
+  describe('Weapon type', function () {
 
     it('is a subtype of Item', function () {
       expect(Weapon.prototype).toEqual(jasmine.any(Item));
@@ -255,7 +255,7 @@ describe('Entities library', function () {
       expect(health.effect).toEqual(jasmine.any(Effect));
     });
 
-    xit('can test if a character can pay its cost.', function () {
+    it('can test if a character can pay its cost.', function () {
       var health = new Scroll('health', 5, new Effect({ hp: 5 }));
       expect(health.canBeUsed(10)).toBe(true);
       expect(health.canBeUsed(4)).toBe(false);
