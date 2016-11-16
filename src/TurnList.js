@@ -23,13 +23,29 @@ TurnList.prototype.next = function () {
   this._turnIndex++;
   this.activeCharacterId = this.list[this._turnIndex];
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  var elegido = false;
+  /*
+  while (this._turnIndex < this.list.length - 1 && !elegido){   
+    
+    if (this._charactersById[this.activeCharacterId].isDead()){
+      elegido = true;
+    }
+    else {
+      this._turnIndex++;
+      this.activeCharacterId = this.list[this._turnIndex];
+    }
+  }*/
+  while (!elegido){
+    this._turnIndex = this._turnIndex % this.list.length;
 
-  while (this._turnIndex < 2 && (this._charactersById[this.activeCharacterId].isDead && this._charactersById[this.activeCharacterId].isDead != undefined)){   
+    if (!this._charactersById[this.list[this._turnIndex]].isDead()){
+      this.activeCharacterId = this.list[this._turnIndex];
+      elegido = true;
+    }
     this._turnIndex++;
-    this.activeCharacterId = this.list[this._turnIndex];
   }
-  console.log(this._turnIndex, this._charactersById[this.activeCharacterId].isDead);
+  
+  console.log(this._turnIndex, this._charactersById[this.activeCharacterId].isDead());
 
   var turn = {number : this.turnNumber, party : this._charactersById[this.activeCharacterId].party, activeCharacterId: this.activeCharacterId};
   
