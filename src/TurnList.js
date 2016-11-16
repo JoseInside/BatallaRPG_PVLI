@@ -17,12 +17,27 @@ TurnList.prototype.next = function () {
   // muertos.
 };
 
-TurnList.prototype._sortByInitiative = function (charactersById) {
+TurnList.prototype._sortByInitiative = function () {
   // Utiliza la función Array.sort(). ¡No te implementes tu propia
   // función de ordenación!
-  var ini = [charactersById.a, charactersById.b, charactersById.c];  
-  //ini.charactersById.initiative.sort();
-  return charactersById;
+  var characters = [];
+  var ini = [];
+
+  for (var nombre in this._charactersById){
+    characters.push ({name: nombre, initiative: this._charactersById[nombre].initiative});
+  }
+
+  characters.sort (function (a, b){
+    if (a.initiative > b.initiative) return -1;
+    else if (a.initiative < b.initiative) return 1;
+    return 0;
+  });
+
+  for (var nombre in this._charactersById){
+    ini.push (this.characters[nombre].name);
+  }
+
+  return ini;
 };
 
 module.exports = TurnList;

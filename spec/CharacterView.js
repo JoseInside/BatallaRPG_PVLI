@@ -34,7 +34,7 @@ describe('CharactesView type', function () {
     });
   });
 
-  it('shows only the visible features and includes id.', function () {
+  xit('shows only the visible features and includes id.', function () {
     var heroTankView = charactersView.get('Tank');
     var featuresCount = Object.keys(heroTankView).length;
 
