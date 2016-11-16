@@ -22,10 +22,10 @@ var lib = module.exports = {
     // Implementa los colmillos y el pseudópodo
     get fangs() {
       return new items.Weapon('fangs', 10);
-    }/*  ERROR ????
+    },
     get pseudopode(){
-      return new items.Weapon('pseudopode', 5);
-    }*/
+      return new items.Weapon('pseudopode', 5, new Effect ( { mp: -5}) );
+    },
   },
 
   characters: {
@@ -41,7 +41,20 @@ var lib = module.exports = {
     },
 
     // Implementa el mago
-
+    //***
+    
+    get heroWizard() {
+      return new Character ('wizard', {
+         initiative: 4,
+          defense: 50,
+          weapon: lib.weapons.wand,
+          hp: 40,
+          maxHp: 40,
+          mp: 100,
+          maxMp: 100
+      })
+    },
+    
     get monsterSkeleton() {
       return new Character('skeleton', {
         initiative: 9,
@@ -53,6 +66,32 @@ var lib = module.exports = {
     },
 
     // Implementa el limo y el murciélago
+    //***
+    
+    get monsterSlime() {
+      return new Character ('slime', {
+        initiative: 2,
+          defense: 40,
+          weapon: lib.weapons.pseudopode,
+          hp: 40,
+          maxHp: 40,
+          mp: 50,
+          maxMp: 50
+      })
+    },
+
+    get monsterBat() {
+      return new Character ('bat', {
+        initiative: 30,
+          defense: 80,
+          weapon: lib.weapons.fangs,
+          hp: 5,
+          maxHp: 5,
+          mp: 0,
+          maxMp: 0
+      })
+    },
+
   },
 
   scrolls: {

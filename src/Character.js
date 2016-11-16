@@ -7,7 +7,7 @@ function Character(name, features) {
   this.party = null;
   this.initiative = features.initiative || 0;
   this._defense = features.defense || 0;
-  this.weapon = null;
+  this.weapon = features.weapon || null;
   this._mp = features.mp || 0;
   this._hp = features.hp || 0;
   this.maxMp = features.maxMp || this._mp || 0;

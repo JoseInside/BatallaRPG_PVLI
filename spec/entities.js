@@ -271,7 +271,7 @@ describe('Entities library', function () {
       expect(entities.scrolls).toEqual(jasmine.any(Object));
     });
 
-    xdescribe('Characters', function () {
+    describe('Characters', function () {
 
       it('includes a tank.', function () {
         var character = entities.characters.heroTank;
@@ -376,7 +376,7 @@ describe('Entities library', function () {
         }));
       });
 
-      xit('includes pseudopode.', function () {
+      it('includes pseudopode.', function () {
         var weapon = entities.weapons.pseudopode;
         expect(weapon).toEqual(jasmine.any(Weapon));
         expect(weapon.effect).toEqual(jasmine.objectContaining({
