@@ -72,9 +72,7 @@ Battle.prototype._extractGrimoiresByParty = function (parties) {
 Battle.prototype._extractCharactersById = function (parties) {
   var idCounters = {};
   var characters = [];
-  var = this;
   var partyIds = Object.keys(parties);
-  
   partyIds.forEach(function (partyId) {
     var members = parties[partyId].members;
     assignParty(members, partyId);
@@ -91,26 +89,23 @@ Battle.prototype._extractCharactersById = function (parties) {
   }
 
   function useUniqueName(character) {
-    // Genera nombres únicos de acuerdo a las reglas
+    // Genera character.names únicos de acuerdo a las reglas
     // de generación de identificadores que encontrarás en
     // la descripción de la práctica o en la especificación.
-
-    var nPersonaje = character.name;
-  
-    if (!idCounters.hasOwnProperty(nPersonaje)){
-      idCounters[nPersonaje] = 0;
-      idCounters[nPersonaje]++;
-      return idCounters[nPersonaje];
+    //***
+    if(!idCounters.hasOwnProperty(character.name)){
+      idCounters[character.name] = 0;
+      idCounters[character.name] ++;
+      return character.name;
     }
-    else if(idCounters.hasOwnProperty(nPersonaje) && idCounters[nPersonaje] === 0){
-      return idCounters[nPersonaje];
+    else if (idCounters[character.name] === 0){
+      return idCounters[character.name];
     }
-    else { 
-      idCounters[nPersonaje]++;
-       return character.name + ' ' + idCounters[nPersonaje];
+    else{
+      idCounters[character.name] ++;
+      return character.name + ' ' + (idCounters[character.name]);
     }
   }
-
 };
 
 Battle.prototype._resetStates = function (charactersById) {
@@ -175,6 +170,7 @@ Battle.prototype._checkEndOfBattle = function () {
     if (iguales === characters.length)
       return partyComun;
     else return null;
+  
   }
 };
 
@@ -228,7 +224,7 @@ Battle.prototype._improveDefense = function (targetId) {
 };
 
 Battle.prototype._restoreDefense = function (targetId) {
-  // Restaura la defensa del personaje a cómo estaba antes de mejorarla.
+   // Restaura la defensa del personaje a cómo estaba antes de mejorarla.
   // Puedes utilizar el atributo this._states[targetId] para llevar tracking
   // de las defensas originales.
   //***
@@ -236,20 +232,20 @@ Battle.prototype._restoreDefense = function (targetId) {
 };
 
 Battle.prototype._attack = function () {
-
-  this._showTargets(function onTarget(targetId) {
+  
+  self._showTargets(function onTarget(targetId) {
     // Implementa lo que pasa cuando se ha seleccionado el objetivo.
     //***
     this._action.targetId = targetId;
     this._action.effect = this._charactersById[this._action.activeCharacterId].weapon.effect;
     this._executeAction();
     this._restoreDefense(targetId);
-  }); 
+  });
 };
 
 Battle.prototype._cast = function () {
 
-  this._showScrolls(function onScroll(scrollId, scroll) {
+  self._showScrolls(function onScroll(scrollId, scroll) {
     // Implementa lo que pasa cuando se ha seleccionado el hechizo.
     //***
     this._action.targetId = targetId;
@@ -290,7 +286,6 @@ Battle.prototype._showTargets = function (onSelection) {
 Battle.prototype._showScrolls = function (onSelection) {
   // Toma ejemplo de la función anterior para mostrar los hechizos. Estudia
   // bien qué parámetros se envían a los listener del evento chose.
-
   this.options.current.on('chose', onSelection);
 };
 

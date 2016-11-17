@@ -78,9 +78,9 @@ describe('Battle type', function () {
 
   });
 
-  xdescribe('Turn list', function () {
+  describe('Turn list', function () {
 
-    xit('includes all the characters sorted by initiative.', function (done) {
+    it('includes all the characters sorted by initiative.', function (done) {
       var sortedByInitiative = ['Fasty', 'Tank', 'Wizz'];
 
       battle.on('start', function () {
@@ -110,7 +110,7 @@ describe('Battle type', function () {
 
   });
 
-  xdescribe('Turns', function () {
+  describe('Turns', function () {
 
     it('include relevant info.', function (done) {
       battle.on('turn', function (turn) {
@@ -140,7 +140,7 @@ describe('Battle type', function () {
 
   });
 
-  xdescribe('Parties in battle', function () {
+  describe('Parties in battle', function () {
 
     it('can contain repeated members, each will be assigned a different id.',
     function () {
@@ -167,7 +167,7 @@ describe('Battle type', function () {
       battle.start();
     });
 
-    xdescribe('Defend action', function () {
+    describe('Defend action', function () {
 
       it('informs of the result.', function (done) {
         var currentDefense = fastEnemy.defense;
