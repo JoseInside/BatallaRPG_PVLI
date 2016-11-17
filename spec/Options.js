@@ -35,7 +35,7 @@ describe('Options type', function () {
     expect(options.get('itemA')).toBe(dataFor['itemA']);
   });
 
-  xit('emits an event when selecting an entry.', function (done) {
+  it('emits an event when selecting an entry.', function (done) {
     var entryId = 'itemA';
     options.on('chose', function (id, data) {
       expect(id).toBe(entryId);
