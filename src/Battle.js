@@ -223,7 +223,7 @@ Battle.prototype._attack = function () {
     // Implementa lo que pasa cuando se ha seleccionado el objetivo.
     self._executeAction();
     self._restoreDefense(targetId);
-  });
+  }); 
 };
 
 Battle.prototype._cast = function () {
