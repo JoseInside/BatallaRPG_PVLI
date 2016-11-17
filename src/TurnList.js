@@ -18,10 +18,7 @@ TurnList.prototype.next = function () {
   // según la especificación. Recuerda que debe saltar los personajes
   // muertos.
   //***
-
-  this.turnNumber++;
-  
-  this._turnIndex++;
+  this._turnIndex = this.turnNumber;
   this.activeCharacterId = this.list[this._turnIndex];
 
   var elegido = false;
@@ -35,15 +32,14 @@ TurnList.prototype.next = function () {
     }
     this._turnIndex++;
   }
+  this.turnNumber++;
   
   //console.log(this._turnIndex, this._charactersById[this.activeCharacterId].isDead());
 
-  var turn = {number : this.turnNumber, party : this._charactersById[this.activeCharacterId].party, activeCharacterId: this.activeCharacterId};
-  
-  if (this._turnIndex === 2)
-    this._turnIndex = -1;
+  var turn = {number : this.turnNumber, party : this._charactersById[this.activeCharacterId].party, activeCharacterId : this.activeCharacterId};
 
   return turn;
+  
 };
 
 TurnList.prototype._sortByInitiative = function () {
