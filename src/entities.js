@@ -20,6 +20,7 @@ var lib = module.exports = {
       return new items.Weapon('wand', 5);
     },
     // Implementa los colmillos y el pseudópodo
+    //***
     get fangs() {
       return new items.Weapon('fangs', 10);
     },
