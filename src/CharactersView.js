@@ -56,7 +56,7 @@ CharactersView.prototype._getViewFor = function (character) {
     get: function () {
       return character.name;
     },
-    set: function (value) {},
+    set: function () {},
 
     enumerable: true
   });
@@ -65,7 +65,7 @@ CharactersView.prototype._getViewFor = function (character) {
     get: function () {
        return character.party;
     },
-    set: function (value){
+    set: function (){
 
     },
     enumerable: true
@@ -75,7 +75,7 @@ CharactersView.prototype._getViewFor = function (character) {
     get: function () {
        return character.initiative;
     },
-    set: function (value){
+    set: function (){
 
     },
     enumerable: true
@@ -85,7 +85,7 @@ CharactersView.prototype._getViewFor = function (character) {
     get: function () {
        return character.defense;
     },
-    set: function (value){
+    set: function (){
 
     },
     enumerable: true
@@ -95,7 +95,7 @@ CharactersView.prototype._getViewFor = function (character) {
     get: function () {
        return character.hp;
     },
-    set: function (value){
+    set: function (){
 
     },
     enumerable: true
@@ -105,7 +105,7 @@ CharactersView.prototype._getViewFor = function (character) {
     get: function () {
        return character.mp;
     },
-    set: function (value){
+    set: function (){
 
     },
     enumerable: true
@@ -115,7 +115,7 @@ CharactersView.prototype._getViewFor = function (character) {
     get: function () {
        return character.maxHp;
     },  
-    set: function (value){
+    set: function (){
 
     },
     enumerable: true
@@ -125,7 +125,7 @@ CharactersView.prototype._getViewFor = function (character) {
     get: function () {
        return character.maxMp;
     },
-    set: function (value){
+    set: function (){
 
     },
     enumerable: true

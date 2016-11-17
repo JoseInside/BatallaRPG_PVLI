@@ -823,6 +823,7 @@ describe('Battle type', function () {
       });
 
       battle.on('end', function (result) {
+  
         expect(result.winner).toEqual('heroes');
         done();
       });
