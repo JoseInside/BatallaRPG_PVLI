@@ -153,14 +153,15 @@ Battle.prototype._checkEndOfBattle = function () {
     // Devuelve true si el personaje está vivo.
     //***
     if (!character.isDead())
-      return true;
-    else return false;
+     return true;
+     else return false;
   }
 
   function getCommonParty(characters) {
     // Devuelve la party que todos los personajes tienen en común o null en caso
     // de que no haya común.
     //***
+    
     var partyComun = characters[0].party;
     var iguales = 0;
     for (var iguales in characters){
@@ -220,13 +221,13 @@ Battle.prototype._defend = function () {
 Battle.prototype._improveDefense = function (targetId) {
   // Implementa la mejora de la defensa del personaje.
   //***
-  //IMPORTANTE RELLENAR DEFENSA ANTES!!!
-  this._states[targetId].defense = this._charactersById[targetId].defense;
+  this._states[targetId].defense = this._charactersById[targetId].defense || 0;
   
   var dActual = Math.ceil(this._charactersById[targetId].defense * 1.1);
   this._charactersById[targetId].defense = dActual;
   
   return dActual;
+
 
 };
 
@@ -317,5 +318,7 @@ Battle.prototype._showScrolls = function (onSelection) {
   this.options.current = scrolls;
   this.options.current.on('chose', onSelection);
 };
+
+
 
 module.exports = Battle;
