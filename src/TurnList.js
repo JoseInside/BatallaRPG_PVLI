@@ -45,7 +45,7 @@ TurnList.prototype.next = function () {
     this._turnIndex++;
   }
   
-  console.log(this._turnIndex, this._charactersById[this.activeCharacterId].isDead());
+  //console.log(this._turnIndex, this._charactersById[this.activeCharacterId].isDead());
 
   var turn = {number : this.turnNumber, party : this._charactersById[this.activeCharacterId].party, activeCharacterId: this.activeCharacterId};
   
