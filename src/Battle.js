@@ -163,8 +163,8 @@ Battle.prototype._checkEndOfBattle = function () {
     //***
     var partyComun = characters[0].party;
     var iguales = 0;
-    for (var cont in characters){
-      if (partyComun === characters[cont].party)
+    for (var iguales in characters){
+      if (partyComun === characters[iguales].party)
         iguales++;
     }
 
@@ -206,6 +206,7 @@ Battle.prototype._onAction = function (action) {
       console.log ("Esta accion no existe");
       break;
   }
+  
 };
 
 Battle.prototype._defend = function () {
@@ -231,34 +232,38 @@ Battle.prototype._restoreDefense = function (targetId) {
   // Puedes utilizar el atributo this._states[targetId] para llevar tracking
   // de las defensas originales.
   //***
+   
   return this._charactersById[targetId].defense = this._states[targetId].defense;
 };
 
 Battle.prototype._attack = function () {
   
-  this._showTargets(function onTarget(targetId) {
-    // Implementa lo que pasa cuando se ha seleccionado el objetivo.
-    //***
-    this._action.targetId = targetId;
-    this._action.effect = this._charactersById[this._action.activeCharacterId].weapon.extraEffect;
-    this._executeAction();
-    this._restoreDefense(targetId);
+  var self = this;
+
+  self._showTargets(function onTarget(targetId) {
+    self._action.targetId = targetId;
+    self._action.effect = self._charactersById[self._action.activeCharacterId].weapon.extraEffect;
+    self._executeAction();
+    self._restoreDefense(targetId);
   });
 };
 
 Battle.prototype._cast = function () {
+  var self = this;
 
-  this._showScrolls(function onScroll(scrollId, scroll) {
+  self._showScrolls(function onScroll(scrollId, scroll) {
     // Implementa lo que pasa cuando se ha seleccionado el hechizo.
     //***
-    this._action.targetId = targetId;
-    this._action.effect = scroll.effect;
-    if (scroll.canBeUsed (this._charactersById[targetId].mp)){
-      this._charactersById[targetId].mp -= scroll.cost;
-      this._executeAction();
-      this._restoreDefense(targetId);
+    self._action.targetId = targetId;
+    self._action.effect = scroll.effect;
+    if (scroll.canBeUsed (self._charactersById[targetId].mp)){
+      self._charactersById[targetId].mp -= scroll.cost;
+      self._executeAction();
+      self._restoreDefense(targetId);
     }
+    
   });
+  
 };
 
 Battle.prototype._executeAction = function () {
@@ -282,14 +287,16 @@ Battle.prototype._informAction = function () {
 Battle.prototype._showTargets = function (onSelection) {
   // Toma ejemplo de la función ._showActions() para mostrar los identificadores
   // de los objetivos.
+  //***
   var elegidos = {};
 
   for (var name in this._charactersById){
     if (!this._charactersById[name].isDead())
       elegidos[name] = name;
   }
-  return elegidos;
+  this.options.current = elegidos;
   this.options.current.on('chose', onSelection);
+  
 };
 
 Battle.prototype._showScrolls = function (onSelection) {

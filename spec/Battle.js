@@ -221,9 +221,7 @@ describe('Battle type', function () {
             break;
           case 2:
             this.on('info', function (result) {
-              console.log ("entreee");
               expect(result.success).toBe(false);
-              console.log (result.success);
               done();
             });
             expect(fastEnemy.defense).toEqual(expectedDefense);
