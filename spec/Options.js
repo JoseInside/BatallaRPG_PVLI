@@ -45,7 +45,7 @@ describe('Options type', function () {
     options.select(entryId);
   });
 
-  xit('emits an error event when the entry does not exist.', function (done) {
+  it('emits an error event when the entry does not exist.', function (done) {
     var entryId = 'xxxx';
     options.on('choseError', function (reason, id) {
       expect(reason).toBe('option-does-not-exist');
