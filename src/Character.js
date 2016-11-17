@@ -1,4 +1,5 @@
 'use strict';
+
 var dice = require('./dice');
 
 function Character(name, features) {
@@ -33,17 +34,19 @@ Character.prototype.applyEffect = function (effect, isAlly) {
   // características del personaje. Recuerda devolver true o false según
   // si el efecto se ha aplicado o no.
   //***
-  if (isAlly || this._defense < dice.d100()){
-    this.initiative += effect.initiative;
-    this.defense += effect.defense;
-    this.hp += effect.hp;
-    this.maxHp += effect.maxHp;
-    this.mp += effect.mp;
-    this.maxMp += effect.maxMp;
+  if (isAlly || this._defense <= dice.d100()){
+    this.initiative += effect.initiative || 0;
+    this.defense += effect.defense || 0; 
+
+    this.hp +=  effect.hp || 0;
+    this.maxHp += effect.maxHp || 0;
+
+    this.mp += effect.mp || 0;
+    this.maxMp += effect.maxMp || 0;
+
   }else return false;
 
   return true;
-
 };
 
 Object.defineProperty(Character.prototype, 'mp', {

@@ -19,7 +19,7 @@ Options.prototype.get = function (id) {
 
 Options.prototype.select = function (id) {
   // Haz que se emita un evento cuando seleccionamos una opción.
-  
+  //***
   if (this.get(id) !== undefined){
   	this.emit('chose', id, this.get(id));
   }

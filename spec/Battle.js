@@ -153,7 +153,7 @@ describe('Battle type', function () {
 
   });
 
-  xdescribe('Battle actions', function () {
+  describe('Battle actions', function () {
 
     it('are 3: attack, defend and cast.', function () {
       battle.on('turn', function () {
@@ -221,12 +221,15 @@ describe('Battle type', function () {
             break;
           case 2:
             this.on('info', function (result) {
+              console.log ("entreee");
               expect(result.success).toBe(false);
+              console.log (result.success);
               done();
             });
             expect(fastEnemy.defense).toEqual(expectedDefense);
             this.options.select('attack');
             this.options.select('Fasty');
+
             break;
           }
         });
@@ -234,7 +237,7 @@ describe('Battle type', function () {
         battle.start();
       });
 
-      it('increases the odds of defending against cast.', function (done) {
+      xit('increases the odds of defending against cast.', function (done) {
         var currentDefense = fastEnemy.defense;
         fakeD100 = currentDefense + 1;
         var expectedDefense = Math.ceil(currentDefense * 1.1);
@@ -263,7 +266,7 @@ describe('Battle type', function () {
         battle.start();
       });
 
-      it('accumulates turn by turn.', function (done) {
+      xit('accumulates turn by turn.', function (done) {
         var currentDefense = fastEnemy.defense;
         var expectedDefense =
             Math.ceil(Math.ceil(currentDefense * 1.1) * 1.1);
