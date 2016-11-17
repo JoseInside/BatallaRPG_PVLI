@@ -72,7 +72,7 @@ Battle.prototype._extractGrimoiresByParty = function (parties) {
 Battle.prototype._extractCharactersById = function (parties) {
   var idCounters = {};
   var characters = [];
-  var _this = this;
+  var = this;
   var partyIds = Object.keys(parties);
   
   partyIds.forEach(function (partyId) {
@@ -94,20 +94,20 @@ Battle.prototype._extractCharactersById = function (parties) {
     // Genera nombres únicos de acuerdo a las reglas
     // de generación de identificadores que encontrarás en
     // la descripción de la práctica o en la especificación.
-    
+
     var nPersonaje = character.name;
   
-    if (!_this.idCounters.hasOwnProperty(nPersonaje)){
-      _this.idCounters[nPersonaje] = 0;
-      _this.idCounters[nPersonaje]++;
-      return _this.idCounters[nPersonaje];
+    if (!idCounters.hasOwnProperty(nPersonaje)){
+      idCounters[nPersonaje] = 0;
+      idCounters[nPersonaje]++;
+      return idCounters[nPersonaje];
     }
-    else if(_this.idCounters.hasOwnProperty(nPersonaje) && _this.idCounters[nPersonaje] === 0){
-      return _this.idCounters[nPersonaje];
+    else if(idCounters.hasOwnProperty(nPersonaje) && idCounters[nPersonaje] === 0){
+      return idCounters[nPersonaje];
     }
     else { 
-      _this.idCounters[nPersonaje]++;
-       return character.name + ' ' + _this.idCounters[nPersonaje];
+      idCounters[nPersonaje]++;
+       return character.name + ' ' + idCounters[nPersonaje];
     }
   }
 
