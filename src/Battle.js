@@ -82,6 +82,10 @@ Battle.prototype._extractCharactersById = function (parties) {
 
   function assignParty(characters, party) {
     // Cambia la party de todos los personajes a la pasada como parámetro.
+    //***
+    for (var cont in characters){
+      characters[cont].party = party;
+    }
   }
 
   function useUniqueName(character) {
@@ -133,11 +137,26 @@ Battle.prototype._checkEndOfBattle = function () {
 
   function isAlive(character) {
     // Devuelve true si el personaje está vivo.
+    //***
+    if (!character.isDead())
+      return true;
+    else return false;
   }
 
   function getCommonParty(characters) {
     // Devuelve la party que todos los personajes tienen en común o null en caso
     // de que no haya común.
+    //***
+    var partyComun = characters[0].party;
+    var iguales = 0;
+    for (var cont in characters){
+      if (partyComun === characters[cont].party)
+        iguales++;
+    }
+
+    if (iguales === characters.length)
+      return partyComun;
+    else return null;
   }
 };
 
@@ -157,6 +176,20 @@ Battle.prototype._onAction = function (action) {
   };
   // Debe llamar al método para la acción correspondiente:
   // defend -> _defend; attack -> _attack; cast -> _cast
+  //***
+  switch (action){
+    case 'defend':
+      this._defend();
+      break;
+    case 'attack':
+      this._attack();
+      break;
+    case 'cast':
+      this._cast();
+      break;
+    default :
+      console.log ('Error al leer la acción correspondiente');
+  }
 };
 
 Battle.prototype._defend = function () {
@@ -170,12 +203,18 @@ Battle.prototype._defend = function () {
 Battle.prototype._improveDefense = function (targetId) {
   var states = this._states[targetId];
   // Implementa la mejora de la defensa del personaje.
+  //***
+  var dActual = this._charactersById[targetId].defense;
+  
+  return dActual *= 1.1;;
 };
 
 Battle.prototype._restoreDefense = function (targetId) {
   // Restaura la defensa del personaje a cómo estaba antes de mejorarla.
   // Puedes utilizar el atributo this._states[targetId] para llevar tracking
   // de las defensas originales.
+  //***
+  return this._charactersById[targetId].defense = this._states[targetId].defense;
 };
 
 Battle.prototype._attack = function () {

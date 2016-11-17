@@ -80,7 +80,7 @@ describe('Battle type', function () {
 
   xdescribe('Turn list', function () {
 
-    it('includes all the characters sorted by initiative.', function (done) {
+    xit('includes all the characters sorted by initiative.', function (done) {
       var sortedByInitiative = ['Fasty', 'Tank', 'Wizz'];
 
       battle.on('start', function () {
@@ -93,7 +93,7 @@ describe('Battle type', function () {
 
   });
 
-  xdescribe('Start', function () {
+  describe('Start', function () {
 
     it('includes the characters who are going to fight by party.',
     function (done) {
